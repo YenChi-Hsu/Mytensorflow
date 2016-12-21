@@ -89,9 +89,11 @@ train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 correct_prediction = tf.equal(tf.argmax(y_conv, 1), tf.argmax(y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-sess.run(tf.initialize_all_variables())
+init = tf.global_variables_initializer()
+sess.run(init)
 
 datasets = './MNIST_data/mnist.pkl.gz'
+
 epoch = input('Pleasw input epoch:')
 batch_size = input('Please input batch size:')
 temp = 50000/batch_size
